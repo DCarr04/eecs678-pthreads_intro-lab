@@ -78,6 +78,7 @@ int main(int argc, char *argv[])
     targs->loop = loop;
     targs->inc = inc;
     /* Make call to pthread_create here */
+    pthread_create(&threads[i], &attr, inc_count, (void *)targs);
   }
 
 
@@ -87,6 +88,7 @@ int main(int argc, char *argv[])
    */
   for (i = 0; i < NUM_THREADS; i++) {
     /* Make call to pthread_join here */
+    pthread_join(threads[i], NULL);
   }
 
   printf ("Main(): Waited on %d threads. Final value of count = %d. Done.\n",
