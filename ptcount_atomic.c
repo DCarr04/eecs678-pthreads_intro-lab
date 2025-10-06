@@ -30,11 +30,13 @@ void *inc_count(void *arg)
      * and loc. Where are these variables stored? What implications
      * does their repsective locations have for critical section
      * existence and the need for Critical section protection?
+     * 
+     * 3 instructions: 1)mov 2)dec 3) mov
+     * 1) moves count into register 2)in register 3)stores count to memory
+     * means need process synchronization to "coordinate updates to shared data" else data
+     * correctness is in danger
      */
-    //count -= my_args->inc;
-    //loc -= my_args->inc;
-
-    pthread_mutex_lock(&count_mutex);
+    pthread_mutex_lock(&count_mutex); //pg3 in slides
     count -= my_args->inc;
     loc -= my_args->inc;
     pthread_mutex_unlock(&count_mutex);
