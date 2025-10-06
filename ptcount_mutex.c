@@ -35,6 +35,7 @@ void *inc_count(void *arg)
     //loc -= my_args->inc;
     pthread_mutex_lock(&count_mutex);
     count -= my_args->inc;
+    loc -= my_args->inc;
     pthread_mutex_unlock(&count_mutex);
 
   }
